@@ -19,11 +19,12 @@ public class KeywordsController {
     @GetMapping("/list")
     public Result<PageResult> getKeywordsList(
             @RequestParam(defaultValue = "1") int page,  // 页码，从1开始
-            @RequestParam(defaultValue = "10") int size  // 每页条数
+            @RequestParam(defaultValue = "10") int size,  // 每页条数
+            @RequestParam(required = false) String query
     ) {
         try {
             // 获取分页数据
-            PageResult pageResult = keywordsService.getKeywordsList(page, size);
+            PageResult pageResult = keywordsService.getKeywordsList(page, size, query);
             return Result.success(pageResult);
         } catch (Exception e) {
             return Result.error("Failed to fetch keywords list: " + e.getMessage());

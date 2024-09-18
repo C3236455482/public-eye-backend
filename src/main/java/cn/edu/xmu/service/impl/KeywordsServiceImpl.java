@@ -28,10 +28,10 @@ public class KeywordsServiceImpl implements KeywordsService {
     private EventsMapper eventsMapper;
 
     @Override
-    public PageResult getKeywordsList(int page, int size) {
+    public PageResult getKeywordsList(int page, int size, String searchTerm) {
         // 开启分页，PageHelper 会自动生成分页的 SQL 语句
         PageHelper.startPage(page, size);
-        List<Keyword> keywordsList = keywordsMapper.getKeywordsList();
+        List<Keyword> keywordsList = keywordsMapper.getKeywordsList(searchTerm);
 
         // 使用 PageInfo 获取分页信息
         PageInfo<Keyword> pageInfo = new PageInfo<>(keywordsList);
